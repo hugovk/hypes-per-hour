@@ -11,7 +11,7 @@ if __name__ == "__main__":
     parser.add_argument("-w", "--word", default="hype", help="Word to search for")
     args = parser.parse_args()
 
-    with open(f"{args.video}.txt") as f:
+    with open(f"data/{args.video}.txt") as f:
         lines = f.readlines()
 
     search_word = args.word
