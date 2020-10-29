@@ -31,6 +31,8 @@ jobs:
         run: |
           python countem.py --video 609400064
           python countem.py --video 609400064 > data/hypes.tsv
+          python countem.py --video 609400064 --word pando
+          python countem.py --video 609400064 --word pando > data/pando.tsv
 
       - name: Commit
         run: |
