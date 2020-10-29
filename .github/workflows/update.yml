@@ -23,11 +23,12 @@ jobs:
           pip install tcd
           tcd --video 785714223 --client-id ${{ secrets.CLIENT_ID }} --client-secret ${{ secrets.CLIENT_SECRET }}
           ls -l
+          python countem.py --video 785714223
 
 #          git config --global user.email "watsonabot@example.com"
 #          git config --global user.name "Watsonabot"
-#          git add data
-#          git commit -m "Automatic tfl cam data update"
+#          git add *.txt
+#          git commit -m "Automatic hypes update"
 #      - name: Push changes
 #        uses: ad-m/github-push-action@master
 #        with:
