@@ -22,10 +22,13 @@ jobs:
         run: |
           pip install tcd
 
-      - name: Fetch and commit
+      - name: Fetch log
         run: |
-          tcd --video 609400064 --client-id ${{ secrets.CLIENT_ID }} --client-secret ${{ secrets.CLIENT_SECRET }}
+          tcd --quiet --video 609400064 --client-id ${{ secrets.CLIENT_ID }} --client-secret ${{ secrets.CLIENT_SECRET }}
           ls -l
+
+      - name: Count em
+        run: |
           python countem.py --video 609400064
 
 #          git config --global user.email "watsonabot@example.com"
