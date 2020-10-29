@@ -7,7 +7,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="TODO", formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
-    parser.add_argument("-v", "--video", default="785714223", help="Video ID")
+    parser.add_argument("-v", "--video", default="609400064", help="Video ID")
     parser.add_argument("-w", "--word", default="hype", help="Word to search for")
     args = parser.parse_args()
 

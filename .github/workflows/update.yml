@@ -30,13 +30,17 @@ jobs:
       - name: Count em
         run: |
           python countem.py --video 609400064
+          python countem.py --video 609400064 > hypes.tsv
 
-#          git config --global user.email "watsonabot@example.com"
-#          git config --global user.name "Watsonabot"
-#          git add *.txt
-#          git commit -m "Automatic hypes update"
-#      - name: Push changes
-#        uses: ad-m/github-push-action@master
-#        with:
-#          github_token: ${{ secrets.GITHUB_TOKEN }}
-#          branch: ${{ github.ref }}
+      - name: Commit
+        run: |
+          git config --global user.email "watsonabot@example.com"
+          git config --global user.name "Watsonabot"
+          git add *.tsv *.txt
+          git commit -m "Automatic hypes update!"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
