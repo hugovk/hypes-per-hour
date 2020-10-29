@@ -1,0 +1,28 @@
+name: Update data
+on: 
+  schedule:
+    - cron: '*/60 * * * *'
+  workflow_dispatch:
+jobs:
+  fetch-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+#        with:
+#          persist-credentials: false
+
+      - name: Fetch and commit
+        run: |
+          pip install tcd
+          tcd --video 785714223 --client-id ${{ secrets.CLIENT_ID }} --client-secret ${{ secrets.CLIENT_SECRET }}
+          ls -l
+#          git config --global user.email "watsonabot@example.com"
+#          git config --global user.name "Watsonabot"
+#          git add data
+#          git commit -m "Automatic tfl cam data update"
+#      - name: Push changes
+#        uses: ad-m/github-push-action@master
+#        with:
+#          github_token: ${{ secrets.GITHUB_TOKEN }}
+#          branch: ${{ github.ref }}
