@@ -24,7 +24,7 @@ jobs:
 
       - name: Fetch bantz
         run: |
-          wget http://hugovk.neocities.org/bobross.tsv -O data/chat.txt
+          wget http://hugovk.neocities.org/bobross.txt -O data/chat.txt
           ls -l
 
       - name: Count 'em
