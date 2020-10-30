@@ -8,8 +8,8 @@ from prettytable import PrettyTable
 
 def get_hour(line):
     elapsed = line[1:].split("]")[0]
-    # for "date time"
     elapsed = elapsed.replace("1 day, 0", "24")
+    # for "date time"
     if " " in elapsed:
         elapsed = elapsed.split(" ")[1]
     elapsed_hour = elapsed.split(":")[0]

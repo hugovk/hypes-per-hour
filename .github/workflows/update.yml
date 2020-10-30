@@ -24,12 +24,12 @@ jobs:
 
       - name: Fetch bantz
         run: |
-          wget http://hugovk.neocities.org/bobross.txt -O data/chat.txt
+          wget https://hugovk.neocities.org/watsoncomedy.txt -O data/chat.txt
           ls -l
 
       - name: Count 'em
         run: |
-          python countem.py -i data/chat.txt --words bob,ross
+          python countem.py -i data/chat.txt --words hype,pando,baker,clap,turnip,mustard,swan,"mustard on a swan"
           ls -l data
 
       - name: Commit
