@@ -20,16 +20,16 @@ jobs:
 
       - name: Install
         run: |
-          pip install prettytable tcd
+          pip install prettytable
 
       - name: Fetch bantz
         run: |
-          tcd --quiet --video 609400064 --output data --client-id ${{ secrets.CLIENT_ID }} --client-secret ${{ secrets.CLIENT_SECRET }}
+          wget http://hugovk.neocities.org/bobross.tsv -O data/chat.tsv
           ls -l
 
       - name: Count 'em
         run: |
-          python countem.py --video 609400064 --words hype,pando
+          python countem.py -i chat.tsv --words bob,ross
           ls -l data
 
       - name: Commit
