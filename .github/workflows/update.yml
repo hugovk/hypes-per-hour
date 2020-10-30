@@ -24,12 +24,12 @@ jobs:
 
       - name: Fetch bantz
         run: |
-          wget http://hugovk.neocities.org/bobross.tsv -O data/chat.tsv
+          wget http://hugovk.neocities.org/bobross.tsv -O data/chat.txt
           ls -l
 
       - name: Count 'em
         run: |
-          python countem.py -i data/chat.tsv --words bob,ross
+          python countem.py -i data/chat.txt --words bob,ross
           ls -l data
 
       - name: Commit
