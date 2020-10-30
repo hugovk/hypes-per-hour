@@ -6,16 +6,20 @@ import argparse
 from prettytable import PrettyTable
 
 
+def get_hour(line):
+    elapsed = line[1:].split("]")[0]
+    # for "date time"
+    elapsed = elapsed.replace("1 day, 0", "24")
+    if " " in elapsed:
+        elapsed = elapsed.split(" ")[1]
+    elapsed_hour = elapsed.split(":")[0]
+
+    return int(elapsed_hour)
+
+
 def do_word(search_word: str, lines: list) -> list:
-    def get_hour(line):
-        elapsed = line[1:].split("]")[0]
-        elapsed = elapsed.replace("1 day, 0", "24")
-        elapsed_hour = elapsed.split(":")[0]
-
-        return int(elapsed_hour)
-
     hypes_per_hour = [0]
-    hour = 0
+    hour = get_hour(lines[0])
 
     for line in lines:
         line = line.strip()
@@ -37,11 +41,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="TODO", formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
-    parser.add_argument("-v", "--video", default="609400064", help="Video ID")
+    parser.add_argument(
+        "-i", "--infile", default="data/609400064.txt", help="Input file"
+    )
+    parser.add_argument("-v", "--video", help="Video ID")
     parser.add_argument("-w", "--words", default="hype", help="CSV words to search for")
     args = parser.parse_args()
 
-    with open(f"data/{args.video}.txt") as f:
+    if args.video:
+        args.infile = f"data/{args.video}.txt"
+
+    with open(args.infile) as f:
         lines = f.readlines()
 
     results = dict()
@@ -52,8 +62,16 @@ if __name__ == "__main__":
 
     table = PrettyTable()
     first_thing = next(iter(results))
-    # Start from 1
-    hours = list(range(1, len(results[first_thing]) + 1))
+    # Start from first hour
+    first_hour = get_hour(lines[0])
+
+    hours = []
+    for hour in range(len(results[first_thing])):
+        out = first_hour + hour
+        if out >= 24:
+            out -= 24
+        hours.append(out)
+
     table.add_column("hour", hours)
 
     for word, counts in results.items():
