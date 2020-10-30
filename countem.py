@@ -41,9 +41,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="TODO", formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
-    parser.add_argument(
-        "-i", "--infile", default="data/609400064.txt", help="Input file"
-    )
+    parser.add_argument("-i", "--infile", default="data/chat.txt", help="Input file")
     parser.add_argument("-v", "--video", help="Video ID")
     parser.add_argument("-w", "--words", default="hype", help="CSV words to search for")
     args = parser.parse_args()
