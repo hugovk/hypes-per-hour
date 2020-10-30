@@ -20,7 +20,7 @@ jobs:
 
       - name: Install
         run: |
-          pip install tcd
+          pip install prettytable tcd
 
       - name: Fetch bantz
         run: |
@@ -29,10 +29,8 @@ jobs:
 
       - name: Count 'em
         run: |
-          python countem.py --video 609400064
-          python countem.py --video 609400064 > data/hypes.tsv
-          python countem.py --video 609400064 --word pando
-          python countem.py --video 609400064 --word pando > data/pando.tsv
+          python countem.py --video 609400064 --words hype,pando
+          ls -l data
 
       - name: Commit
         run: |
