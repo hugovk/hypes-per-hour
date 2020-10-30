@@ -5,7 +5,7 @@ on:
     - cron: "*/60 * * * *"
   workflow_dispatch:
 jobs:
-  fetch-and-commit:
+  pandotronic:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,12 +22,12 @@ jobs:
         run: |
           pip install tcd
 
-      - name: Fetch log
+      - name: Fetch bantz
         run: |
           tcd --quiet --video 609400064 --output data --client-id ${{ secrets.CLIENT_ID }} --client-secret ${{ secrets.CLIENT_SECRET }}
           ls -l
 
-      - name: Count em
+      - name: Count 'em
         run: |
           python countem.py --video 609400064
           python countem.py --video 609400064 > data/hypes.tsv
@@ -39,7 +39,7 @@ jobs:
           git config --global user.email "watsonabot@example.com"
           git config --global user.name "Watsonabot"
           git add data
-          git commit -m "Automatic hypes update!"
+          git commit -m "Automatic hypes update!" || true
 
       - name: Push changes
         uses: ad-m/github-push-action@master
