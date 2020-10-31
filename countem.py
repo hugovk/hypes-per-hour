@@ -32,6 +32,8 @@ def do_word(search_word: str, lines: list) -> list:
             hypes_per_hour[-1] += hypes
         else:
             hour += 1
+            if hour >= 24:
+                hour -= 24
             hypes_per_hour.append(hypes)
 
     return hypes_per_hour
